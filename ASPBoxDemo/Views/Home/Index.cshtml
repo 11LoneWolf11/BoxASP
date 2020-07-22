@@ -1,0 +1,35 @@
+﻿@model  ASPBoxDemo.Models.LoginModel
+
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<html>
+<head>
+    <script src='https://www.google.com/recaptcha/api.js' type="text/javascript"></script>
+</head>
+<body>
+    <h2>Index</h2>
+    <div>
+        @using (Html.BeginForm("FormSubmit", "Home", FormMethod.Post))
+        {
+
+            <input name="email" type="text" class="form-control" placeholder="email" required>
+            <br />
+            <input name="password" type="password" class="form-control" placeholder="password" required>
+            <br />
+            <div class="g-recaptcha" data-sitekey="6LdxC7QZAAAAAHS18G2FX09F0F6m79qR-i08AjOe"></div>
+            <br />
+            <input type="submit" value="Submit" />
+        }
+    </div>
+    @if (!Html.ViewData.ModelState.IsValid)
+    {
+    <span style="display:inline-block; font-size:20px;margin:20px 0;padding:20px;border:1px solid #D3D3D3">
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })        
+    </span>
+    }
+</body>
+
+</html>
